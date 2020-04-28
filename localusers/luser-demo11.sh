@@ -45,6 +45,38 @@ do
   esac
 done
 
+# NUM=$(( 1 + 2 ))
+# DICEA='3'
+# DICEB='6'
+# TOTAL=$(( DICEA + DICEB ))
+# (( NUM ++ ))
+# let X=NUM+5
+
+# echo "Number of args: ${#}"
+# echo "All args: ${@}"
+# echo "First arg: ${1}"
+# echo "Second arg: ${2}"
+# echo "Third arg: ${3}"
+
+# Inspect OPTIND
+# echo "OPTIND: ${OPTIND}"
+
+# Remove the options while leaving the remaining arguments.
+shift "$(( OPTIND - 1))"
+
+# echo "After the shift"
+# echo "Number of args: ${#}"
+# echo "All args: ${@}"
+# echo "First arg: ${1}"
+# echo "Second arg: ${2}"
+# echo "Third arg: ${3}"
+
+if [[ "${#}" -gt 0 ]]
+then
+  usage
+fi
+
+
 log 'Generating a password.'
 
 PASSWORD=$(date +%s%N${RANDOM}${RANDOM} | sha256sum | head -c${LENGTH})
